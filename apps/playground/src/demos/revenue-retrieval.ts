@@ -114,7 +114,7 @@ const imagineAnswerTo = (
         )
     )
     .build()
-    .content({ model: "gpt-3.5-turbo-16k" });
+    .content({ model: "gpt-4-turbo" });
 };
 
 const summarizeData = (

@@ -33,7 +33,6 @@ export class SupabaseWorkspace implements Workspace {
 
     return await data.text();
   }
-
   async exists(subpath: string): Promise<boolean> {
     const path = this.toWorkspacePath(subpath);
 

@@ -24,22 +24,12 @@ export default function WelcomeModal(props: WelcomeModalProps) {
     <>
       <div className="relative flex h-full w-full flex-col items-center justify-center w-full">
         <div className="text-center">
-          evo.ninja is a generalist AI agent with a unique<br/>chameleon architecture:
-        </div>
-        <img src="/arch-diagram-w-logo.png" alt="Architecture" className="w-64 h-auto pb-6" />
-        <div className="text-center">
-        Created by the <a href="https://polywrap.io" target="_blank" className="text-cyan-500">Polywrap</a> team, evo.ninja won<br/>"Best Generalist
-        Agent" from AutoGPT.
-        </div>
-        <img src="/polywrap-award.png" alt="Award" className="w-32 h-auto pb-6 pt-6" />
-        <div className="text-center">
-          Join our <a href="https://discord.gg/k7UCsH3ps9" target="_blank" className="text-cyan-500">discord</a> and <a href="https://blog.polywrap.io" target="_blank" className="text-cyan-500">substack</a> to learn and
-          stay<br/>informed with our latest creations!
+         Charlie a generalist AI agent with a unique<br/>chameleon architecture:
         </div>
       </div>
       <div className="flex justify-end pt-8">
         <Button onClick={() => setSignInFlow(true)}>
-          <div>Try Evo</div>
+          <div>Try Charlie</div>
           <ArrowRight size={16} color="white" />
         </Button>
       </div>
@@ -110,7 +100,7 @@ export default function WelcomeModal(props: WelcomeModalProps) {
 
   return (
     <>
-      <Modal isOpen={isOpen} title="Welcome to Evo Ninja" onClose={onClose}>
+      <Modal isOpen={isOpen} title="Welcome to Vanguards Charlie" onClose={onClose}>
         {sigInFlow ? SignInFlow : IntroFlow}
       </Modal>
     </>

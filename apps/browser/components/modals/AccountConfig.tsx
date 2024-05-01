@@ -62,8 +62,8 @@ function AccountConfig(props: AccountConfigProps) {
         {!apiKey && (
           <p>
             {!!session?.user.email
-              ? "Provide your own OpenAI key to get started with Evo."
-              : "Provide your own OpenAI key and use Evo as a guest. As a guest, your sessions will not be saved."}
+              ? "Provide your own OpenAI key to get started with Charlie."
+              : "Provide your own OpenAI key and use Charlie as a guest. As a guest, your sessions will not be saved."}
           </p>
         )}
         <div className="space-y-3">
@@ -97,7 +97,7 @@ function AccountConfig(props: AccountConfigProps) {
           <h3 className="text-sm font-semibold">Data</h3>
           <fieldset className="flex w-full items-center justify-between">
             <label className="text-sm text-zinc-200">
-              Share prompts with Evo
+              Share prompts with Charlie
             </label>
             <TextField
               checked={telemetry}

@@ -35,36 +35,38 @@ export function sanitizeLogs(messages: ChatLog[]): MessageSet[] {
     if (!currentSet) {
       return sanitizedLogs;
     }
+   // If there's no initialized set or title is not a string, don't try to fill details
+   if (!currentSet || typeof currentMessage.title !== 'string') {
+    return sanitizedLogs;
+  }
 
-    // Sometimes the LLM request errors and returns "{}"
-    // This handles the error and explicitly returns an error message to the UI
-    if (!("title" in currentMessage) || currentMessage.title === "{}") {
-      currentSet.evoMessage = "An error has happened, please contact support if this continue happening";
-      return sanitizedLogs;
-    }
+  // Handle cases where title might be an empty object represented as "{}"
+  if (currentMessage.title === "{}") {
+    currentSet.evoMessage = "An error has happened, please contact support if this continue happening";
+    return sanitizedLogs;
+  }
 
-    // Only user message (goal) and evo's answer does not start with #
-    // Since user message is handled above, we now for sure that its evo's answer
-    if (!currentMessage.title.startsWith("#")) {
-      currentSet.evoMessage = currentMessage.title;
+  // Check and process titles based on their prefixes
+  if (!currentMessage.title.startsWith("#")) {
+    currentSet.evoMessage = currentMessage.title;
+  } else {
+    // Steps or onGoal{Status} are the ones that start with two #
+    if (currentMessage.title.startsWith("## ")) {
+      currentSet.details[currentMessage.title] = [];
     } else {
-      // Steps or onGoal{Status} are the one that starts with two #
-      if (currentMessage.title.startsWith("## ")) {
-        currentSet.details[currentMessage.title] = [];
-      } else {
-        // Get the title and/or content and attach to section
-        const detailKeys = Object.keys(currentSet.details);
-        const currentKey = detailKeys[detailKeys.length - 1];
-        const detailContent = currentMessage.content
-          ? currentMessage.title.concat(`\n${currentMessage.content}`)
-          : currentMessage.title;
-        const currentStep = currentSet.details[currentKey];
-        // To avoid errors in runtime, we guarantee that current step indeed exists
-        if (currentStep) {
-          currentStep.push(detailContent);
-        }
+      // Get the title and/or content and attach to section
+      const detailKeys = Object.keys(currentSet.details);
+      const currentKey = detailKeys[detailKeys.length - 1];
+      const detailContent = currentMessage.content
+        ? currentMessage.title.concat(`\n${currentMessage.content}`)
+        : currentMessage.title;
+      const currentStep = currentSet.details[currentKey];
+      // Ensure that current step exists before adding content to it
+      if (currentStep) {
+        currentStep.push(detailContent);
       }
     }
-    return sanitizedLogs;
-  }, []);
+  }
+  return sanitizedLogs;
+}, []);
 }

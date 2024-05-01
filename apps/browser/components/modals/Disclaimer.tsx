@@ -38,7 +38,7 @@ const Disclaimer = ({ onClose, isOpen }: DisclaimerProps) => {
             className="h-8 w-8 min-w-[2rem] md:h-10 md:w-10 md:min-w-[2.5rem]"
           />
           <div className="w-full">
-            Mind sharing your prompts to help make Evo even better?
+            Mind sharing your prompts to help make Charlie even better?
           </div>
         </div>
         <div className="flex gap-2.5">

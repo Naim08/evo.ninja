@@ -109,7 +109,7 @@ export default function ChatLogs({
                   <>
                     <div className="flex items-center justify-between">
                       <span className="SenderName font-medium">
-                        {session?.user.name ? session?.user.name : "User"}
+                        {session?.user.name ? session?.user.name : "Naim"}
                       </span>
                     </div>
                   </>
@@ -127,7 +127,7 @@ export default function ChatLogs({
                   <div className="w-full max-w-[calc(100vw-84px)] space-y-2 pt-1 md:max-w-[49rem]">
                     <>
                       <div className="flex items-center justify-between">
-                        <span className="SenderName font-medium">Evo</span>
+                        <span className="SenderName font-medium">Charlie</span>
                         {!isRunning && (
                           <button
                             className="group/button flex items-center space-x-2 text-cyan-500 hover:text-cyan-400"
